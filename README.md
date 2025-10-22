@@ -84,12 +84,15 @@ loadMacros(
 );
 
 # R code block
-rserve_eval(<<'RCODE');
-# Generate random data
-x <- rnorm(100, mean = 50, sd = 10)
-mean_x <- mean(x)
-sd_x <- sd(x)
-RCODE
+rserve_eval('{
+    # Generate random data
+    x <- rnorm(100, mean = 50, sd = 10)
+    mean_x <- mean(x)
+    sd_x <- sd(x)
+}');
+
+$mean_x = rserve_eval('mean_x');
+$sd_x = rserve_eval('sd_x');
 
 BEGIN_PGML
 The mean of the dataset is [@ $mean_x @]*.
@@ -100,7 +103,7 @@ END_PGML
 ENDDOCUMENT();
 ```
 
-Press Ctrl+Enter on each R line to execute it interactively.
+Press Ctrl+Enter on each R line to execute it interactively. This extension will work with multiline R expressions and selections as well. To run an entire `reserve_eval()` block, you can press Ctrl+Enter while on either line with either of `{` or `}`.
 
 ## Compatibility
 
@@ -172,3 +175,7 @@ https://github.com/driegert/webwork-pg-support
 ## Issues
 
 Report bugs and request features at: https://github.com/driegert/webwork-pg-support/issues
+
+# Acknowledgement
+
+This extension was developed with Claude Code AI. Some help from Perplexity AI and minor manual intervention or edits from me. This includes the README file (except for this part ;) ). I made minor edits to the examples within the README as well.
