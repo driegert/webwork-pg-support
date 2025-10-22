@@ -119,7 +119,7 @@ Press Ctrl+Enter on each R line to execute it interactively. This extension will
 **Notes:**
 - R code execution requires Positron IDE's R runtime API
 - Syntax highlighting should work in all VS Code-based editors
-- Compatibility testing is ongoing for non-Positron editors
+- I am not currently working on compatibility for VS Codium, VS Code, or Cursor, but perhaps in the future.
 
 ## Development
 
