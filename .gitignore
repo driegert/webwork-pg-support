@@ -1,0 +1,30 @@
+# Node modules (restore via npm install)
+node_modules/
+
+# Compiled output (rebuilt via npm compile)
+out/
+
+# Log files
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Editor directories (personal settings)
+.vscode/
+
+# Keep these files:
+# ✅ package-lock.json (for reproducible builds)
+# ✅ test-sample.pg (useful example)
+# ✅ releases/*.vsix (version history - tracked in git)

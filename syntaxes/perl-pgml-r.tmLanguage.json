@@ -1,0 +1,50 @@
+{
+  "scopeName": "source.perl.pgml",
+  "injectionSelector": "L:source.perl",
+  "patterns": [
+    {
+      "begin": "\\bBEGIN_PGML\\b",
+      "end": "\\bEND_PGML\\b",
+      "name": "markup.section.pgml",
+      "contentName": "text.html.markdown",
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    },
+    {
+      "begin": "rserve_eval\\(\\s*'(?!')",
+      "end": "(?<!\\\\)'\\s*\\)",
+      "name": "meta.embedded.r.perl",
+      "contentName": "source.r",
+      "patterns": [
+        {
+          "include": "source.r"
+        }
+      ]
+    },
+    {
+      "begin": "rserve_eval\\(\\s*\"(?!\")",
+      "end": "(?<!\\\\)\"\\s*\\)",
+      "name": "meta.embedded.r.perl",
+      "contentName": "source.r",
+      "patterns": [
+        {
+          "include": "source.r"
+        }
+      ]
+    },
+    {
+      "begin": "\\bBEGIN_PGML_SOLUTION\\b",
+      "end": "\\bEND_PGML_SOLUTION\\b",
+      "name": "markup.section.pgml.solution",
+      "contentName": "text.html.markdown",
+      "patterns": [
+        {
+          "include": "text.html.markdown"
+        }
+      ]
+    }
+  ]
+}

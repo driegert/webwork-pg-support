@@ -1,0 +1,93 @@
+## DESCRIPTION
+## Sample WeBWorK problem demonstrating R and PGML blocks
+## ENDDESCRIPTION
+
+DOCUMENT();
+
+loadMacros(
+    'PGstandard.pl',
+    'PGML.pl',
+    'RserveClient.pl'
+);
+
+TEXT(beginproblem());
+
+# R code block with single quotes
+$result1 = rserve_eval('
+{
+    x <- c(1, 2, 3, 4, 5)
+    mean_x <- mean(x)
+    sd_x <- sd(x)
+    mean_x
+}
+');
+
+# R code block with double quotes
+$result2 = rserve_eval("
+{
+    y <- rnorm(100, mean = 10, sd = 2)
+    summary(y)
+}
+");
+
+# Another R block for testing Ctrl+Enter with multi-line expressions
+$data = rserve_eval('
+{
+    # Generate some data
+    data <- data.frame(
+        x = 1:10,
+        y = rnorm(10)
+    )
+    # Calculate correlation
+    cor(data$x, data$y)
+}
+');
+
+# Test multi-line R expression detection
+# Place cursor on any line of this expression and press Ctrl+Enter
+$complex_calc = rserve_eval('
+{
+    # Multi-line function call
+    result <- lapply(1:5, function(i) {
+        x <- i * 2
+        y <- x^2
+        list(input = i, output = y)
+    })
+
+    # Nested brackets
+    summary_stats <- c(
+        mean = mean(sapply(result, function(x) x$output)),
+        sd = sd(sapply(result, function(x) x$output))
+    )
+
+    summary_stats
+}
+');
+
+BEGIN_PGML
+## Statistics Problem
+
+The mean of the dataset is [`[$result1]`].
+
+You can also work with more complex R code blocks.
+
+### Instructions
+
+1. Review the R code above
+2. Calculate the standard deviation
+3. Enter your answer below
+
+END_PGML
+
+BEGIN_PGML_SOLUTION
+## Solution
+
+The solution involves using R's statistical functions:
+
+- The `mean()` function calculates the average
+- The `sd()` function calculates standard deviation
+- We can use `rnorm()` to generate random normal data
+
+END_PGML_SOLUTION
+
+ENDDOCUMENT();

@@ -1,0 +1,86 @@
+{
+  "name": "webwork-pg-support",
+  "displayName": "WeBWorK PG File Support",
+  "description": "Comprehensive language support for WeBWorK problem files (.pg) in Positron IDE. Provides syntax highlighting for embedded R code (rserve_eval blocks) and PGML markdown sections, plus interactive R code execution with smart expression detection and automatic cursor advancement. Perfect for WeBWorK problem development with integrated R statistical computing.",
+  "version": "0.0.4",
+  "publisher": "DrGert",
+  "author": "David L. Riegert",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/driegert/webwork-pg-support.git"
+  },
+  "bugs": {
+    "url": "https://github.com/driegert/webwork-pg-support/issues"
+  },
+  "homepage": "https://github.com/driegert/webwork-pg-support#readme",
+  "keywords": [
+    "webwork",
+    "pg",
+    "r",
+    "positron",
+    "perl",
+    "pgml",
+    "rserve",
+    "markdown",
+    "syntax-highlighting",
+    "code-execution"
+  ],
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:perl",
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "perl",
+        "extensions": [
+          ".pg"
+        ],
+        "aliases": [
+          "Perl"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "scopeName": "source.perl.pgml",
+        "path": "./syntaxes/perl-pgml-r.tmLanguage.json",
+        "injectTo": [
+          "source.perl"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "webwork-pg.executeRCode",
+        "title": "Execute R Code in Selection or Line",
+        "category": "WeBWorK PG"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "webwork-pg.executeRCode",
+        "key": "ctrl+enter",
+        "when": "editorTextFocus && resourceExtname == .pg"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -p ./ -w"
+  },
+  "dependencies": {
+    "@posit-dev/positron": "^0.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.130",
+    "@types/vscode": "^1.103.0",
+    "typescript": "^4.9.5"
+  }
+}

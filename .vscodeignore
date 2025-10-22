@@ -1,0 +1,26 @@
+# Source files - only include compiled JavaScript
+src/**
+tsconfig.json
+**/*.ts
+
+# Development files
+.vscode/**
+.vscode-test/**
+
+# Exclude dev dependencies but keep runtime dependencies
+node_modules/**/test/**
+node_modules/**/*.md
+node_modules/**/.*
+
+# Test files
+test-sample.pg
+
+# Git files
+.git
+.gitignore
+
+# NPM files
+package-lock.json
+
+# Documentation
+*.md
