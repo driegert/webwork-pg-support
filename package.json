@@ -60,12 +60,23 @@
         "command": "webwork-pg.executeRCode",
         "title": "Execute R Code in Selection or Line",
         "category": "WeBWorK PG"
+      },
+      {
+        "command": "webwork-pg.insertPipe",
+        "title": "Insert R Pipe Operator",
+        "category": "WeBWorK PG"
       }
     ],
     "keybindings": [
       {
         "command": "webwork-pg.executeRCode",
         "key": "ctrl+enter",
+        "when": "editorTextFocus && resourceExtname == .pg"
+      },
+      {
+        "command": "webwork-pg.insertPipe",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m",
         "when": "editorTextFocus && resourceExtname == .pg"
       }
     ]

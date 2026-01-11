@@ -285,6 +285,29 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(executeRCodeCommand);
 
+  // Register command for inserting R pipe operator (Ctrl+Shift+M)
+  const insertPipeCommand = vscode.commands.registerCommand('webwork-pg.insertPipe', async () => {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+
+    const position = editor.selection.active;
+    const document = editor.document;
+
+    // Check if we're in a .pg file
+    if (!document.fileName.endsWith('.pg')) {
+      return;
+    }
+
+    // Insert the R native pipe operator
+    await editor.edit(editBuilder => {
+      editBuilder.insert(position, ' |> ');
+    });
+  });
+
+  context.subscriptions.push(insertPipeCommand);
+
   /**
    * Get the complete R expression at the cursor position
    * Handles multi-line expressions with balanced brackets
